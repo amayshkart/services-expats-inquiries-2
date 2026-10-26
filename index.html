@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>گواهی تایید اقامت — طرح آمایش ۲۰</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Tahoma, "Segoe UI", sans-serif;
+      background: #eef2f7;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 16px;
+      color: #1f2937;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 760px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, #064e3b, #059669);
+      color: #fff;
+      padding: 18px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand .emblem {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid rgba(255,255,255,.6);
+      object-fit: contain;
+      padding: 3px;
+      flex-shrink: 0;
+    }
+
+    .brand h1 {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .brand .sub {
+      font-size: 11px;
+      opacity: .85;
+      margin-top: 2px;
+    }
+
+    .doc-meta {
+      text-align: left;
+      font-size: 11px;
+      line-height: 1.8;
+      opacity: .95;
+    }
+
+    .doc-meta span { display: block; }
+    .doc-meta b { font-weight: 700; }
+
+    .demo-strip {
+      background: #ecfdf5;
+      color: #065f46;
+      text-align: center;
+      font-size: 12px;
+      padding: 8px;
+      border-bottom: 1px solid #a7f3d0;
+      font-weight: 600;
+    }
+
+    .doc-title {
+      text-align: center;
+      padding: 22px 28px 6px;
+    }
+
+    .doc-title h2 {
+      font-size: 19px;
+      font-weight: 800;
+      color: #064e3b;
+      letter-spacing: -.2px;
+    }
+
+    .doc-title p {
+      font-size: 11px;
+      color: #6b7280;
+      margin-top: 5px;
+    }
+
+    .body {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 24px;
+      padding: 20px 28px 28px;
+    }
+
+    .photo {
+      width: 150px;
+      height: 180px;
+      border-radius: 12px;
+      border: 3px solid #e5e7eb;
+      object-fit: cover;
+      background: #f3f4f6;
+    }
+
+    .photo-wrap { text-align: center; }
+
+    .photo-cap {
+      font-size: 10px;
+      color: #6b7280;
+      margin-top: 6px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 20px;
+    }
+
+    .field {
+      border-bottom: 1px dashed #e5e7eb;
+      padding-bottom: 6px;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    .label {
+      font-size: 11px;
+      color: #6b7280;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .value {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .value.ltr {
+      direction: ltr;
+      text-align: right;
+      font-family: "Courier New", monospace;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ecfdf5;
+      color: #047857;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .status::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+    }
+
+    .signature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding: 0 28px 22px;
+      text-align: center;
+    }
+
+    .sig-box {
+      border: 1px dashed #cbd5e1;
+      border-radius: 10px;
+      padding: 14px 10px 12px;
+      font-size: 11px;
+      color: #6b7280;
+      min-height: 90px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sig-box .sig-title {
+      font-weight: 700;
+      color: #374151;
+      font-size: 12px;
+    }
+
+    .sig-box .sig-line {
+      border-top: 1px solid #e5e7eb;
+      margin-top: 10px;
+      padding-top: 6px;
+      color: #9ca3af;
+    }
+
+    .note {
+      border-top: 1px solid #e5e7eb;
+      padding: 12px 28px;
+      text-align: center;
+      font-size: 11px;
+      color: #065f46;
+      background: #f0fdf4;
+      line-height: 1.9;
+    }
+
+    .verify-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 28px;
+      font-size: 10px;
+      color: #475569;
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .verify-strip code {
+      font-family: "Courier New", monospace;
+      direction: ltr;
+      background: #eef2f7;
+      padding: 2px 8px;
+      border-radius: 6px;
+      color: #064e3b;
+      font-weight: 700;
+    }
+
+    @media (max-width: 560px) {
+      .body { grid-template-columns: 1fr; }
+      .photo-wrap { display: flex; flex-direction: column; align-items: center; }
+      .info-grid { grid-template-columns: 1fr; }
+      .signature-row { grid-template-columns: 1fr; }
+      .doc-meta { text-align: right; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <div class="card-header">
+      <div class="brand">
+        <img class="emblem"
+             src="https://cdn.imgurl.ir/uploads/m787115_.png"
+             alt="نشان سازمان">
+        <div>
+          <h1>سازمان ملی مهاجرت — سامانه آمایش سرزمین</h1>
+          <div class="sub">سامانه رسمی استعلام و تایید اقامت (طرح آمایش ۲۰)</div>
+        </div>
+      </div>
+      <div class="doc-meta">
+        <span>شماره سند: <b>۱۴۰۴/۲۰۸۸/آ</b></span>
+        <span>تاریخ صدور: <b>۱۴۰۴</b></span>
+      </div>
+    </div>
+
+    <div class="demo-strip">
+      تایید اقامت آنلاین — این سند به صورت برخط از سامانه آمایش سرزمین (طرح ۲۰) صادر شده است
+    </div>
+
+    <div class="doc-title">
+      <h2>گواهی تایید اقامت — طرح آمایش ۲۰</h2>
+      <p>این گواهی بر اساس اطلاعات ثبت‌شده در سامانه یکپارچه اقامت و آمایش سرزمین صادر گردیده است.</p>
+    </div>
+
+    <div class="body">
+      <div class="photo-wrap">
+        <img class="photo"
+             src="https://cdn.imgurl.ir/uploads/g161142_.jpg"
+             alt="تصویر دارنده اقامت">
+        <div class="photo-cap">تصویر دارنده اقامت</div>
+      </div>
+
+      <div class="info-grid">
+        <div class="field full">
+          <span class="label">نام و نام خانوادگی</span>
+          <span class="value">جعفر طاهری</span>
+        </div>
+
+        <div class="field">
+          <span class="label">شناسه اختصاصی</span>
+          <span class="value ltr">۵۳۹۶۱۷۴۰۸۲۶۱</span>
+        </div>
+
+        <div class="field">
+          <span class="label">شماره پرونده آمایش</span>
+          <span class="value ltr">AM-1404-002088</span>
+        </div>
+
+        <div class="field">
+          <span class="label">نوع اقامت</span>
+          <span class="value">آمایش یک ساله قابل تمدید</span>
+        </div>
+
+        <div class="field">
+          <span class="label">استان / شهر محل اقامت</span>
+          <span class="value">کرج — کرج</span>
+        </div>
+
+        <div class="field full">
+          <span class="label">آدرس ثبت‌شده محل سکونت</span>
+          <span class="value">کرج، بلوار دانش آموز، پشت بانک ملی شعبه ولیعصر، نبش کوچه منصوری</span>
+        </div>
+
+        <div class="field">
+          <span class="label">تاریخ انقضا</span>
+          <span class="value">۱۴۰۶/۰۳/۳۰</span>
+        </div>
+
+        <div class="field">
+          <span class="label">کد طرح آمایش</span>
+          <span class="value ltr">PLAN-20-KRJ-01</span>
+        </div>
+
+        <div class="field full">
+          <span class="label">مرجع صادرکننده</span>
+          <span class="value">اداره کل مهاجرت و امور اتباع استان البرز — دفتر آمایش کرج</span>
+        </div>
+
+        <div class="field full">
+          <span class="label">وضعیت اقامت</span>
+          <span class="value">
+            <span class="status">تایید شده — معتبر</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="signature-row">
+      <div class="sig-box">
+        <div class="sig-title">مهر و امضای مرجع صادرکننده</div>
+        <div class="sig-line">اداره کل مهاجرت و امور اتباع استان البرز</div>
+      </div>
+      <div class="sig-box">
+        <div class="sig-title">تایید سامانه آمایش سرزمین</div>
+        <div class="sig-line">امضای الکترونیکی — معتبر</div>
+      </div>
+    </div>
+
+    <div class="note">
+      این گواهی صرفاً جهت اطلاع و استعلام اقامت صادر شده و هرگونه استفاده غیرمجاز از آن پیگرد قانونی دارد.
+      <br>
+      سامانه رسمی آمایش سرزمین — طرح آمایش ۲۰
+    </div>
+
+    <div class="verify-strip">
+      <span>کد رهگیری سند:</span>
+      <code>IR-AMAYESH-1404-2088-A</code>
+      <span>قابلیت استعلام: سامانه یکپارچه اقامت و آمایش</span>
+    </div>
+
+  </div>
+
+</body>
+</html>
